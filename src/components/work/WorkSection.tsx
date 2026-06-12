@@ -21,6 +21,7 @@ type WorkSectionProps = {
     href: string;
   };
   hideAccordionToggle?: boolean;
+  accordionCentered?: boolean;
 };
 
 const WorkSection = ({
@@ -31,6 +32,7 @@ const WorkSection = ({
   accordionBlocks,
   cta,
   hideAccordionToggle = false,
+  accordionCentered = false,
 }: WorkSectionProps) => {
   const [accordionOpen, setAccordionOpen] = useState(hideAccordionToggle);
   const [inView, setInView] = useState(false);
@@ -225,13 +227,14 @@ const WorkSection = ({
         </div>
 
         {/* Accordion content */}
+        {accordionBlocks.length > 0 && (
         <div
           className="overflow-hidden transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] max-w-[1100px] mx-auto"
           style={{ maxHeight: accordionHeight ? `${accordionHeight}px` : "0px" }}
         >
           <div ref={accordionContentRef} className="pt-8 md:px-8">
             <div className="p-6 md:p-10 bg-brand-purple/[0.03] border border-brand-purple/10 rounded-[16px]">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+              <div className={cn("grid gap-8 md:gap-12", accordionCentered ? "grid-cols-1 max-w-xl mx-auto" : "grid-cols-1 md:grid-cols-2")}>
                 {accordionBlocks.map((block, i) => (
                   <div key={i}>
                     <h4 className="font-ebGaramond text-[20px] md:text-[24px] font-[600] text-brand-purple tracking-[-0.02em] mb-5">
@@ -254,6 +257,7 @@ const WorkSection = ({
             </div>
           </div>
         </div>
+        )}
       </div>
     </section>
   );

@@ -97,26 +97,6 @@ const CoreValues = () => {
           />
         </div>
 
-        {/* Intro paragraph */}
-        <div
-          className={cn(
-            "max-w-[800px] mx-auto mb-12 md:mb-16 text-center transition-all duration-700 delay-300 ease-[cubic-bezier(0.4,0,0.2,1)]",
-            inView ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0",
-          )}
-        >
-          <p className="font-openSans text-[14px] md:text-[16px] text-neutral-500 tracking-[0.04em] uppercase font-semibold mb-3">
-            Why These Statements Were Rewritten
-          </p>
-          <p className="font-openSans text-[14px] md:text-[17px] text-neutral-700 leading-[1.7]">
-            The original core value statements described what we do. These
-            statements describe how we think. A value is not a slogan. It is a
-            filter for every decision we make. Each of the six values below
-            has been rewritten to reflect not just our aspirations but our
-            operating principles. They are the standards we hold ourselves to,
-            whether the client is watching or not.
-          </p>
-        </div>
-
         {/* WebGUI-style cards grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
           {coreValues.map((value, index) => (
@@ -124,7 +104,9 @@ const CoreValues = () => {
               key={value.title}
               className={cn(
                 "group relative p-6 md:p-8 rounded-[16px] border transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] cursor-default",
-                inView ? "translate-y-0 opacity-100" : "translate-y-12 opacity-0",
+                inView
+                  ? "translate-y-0 opacity-100"
+                  : "translate-y-12 opacity-0",
                 hoveredIndex === index
                   ? "border-brand-purple/40 shadow-[0_8px_30px_rgba(128,0,128,0.12)] -translate-y-2"
                   : "border-neutral-200/80 shadow-sm hover:shadow-[0_4px_20px_rgba(128,0,128,0.08)]",
