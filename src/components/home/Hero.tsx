@@ -33,7 +33,7 @@ const Hero = () => {
             className="absolute bottom-[65%] right-[70%] hover:rotate-[15deg] transition-all duration-1000 ease-in-out"
             alt=""
           />
-          <span className="absolute bottom-[120%] left-[80%] hover:left-[100%] hover:scale-150 transition-all duration-1000 ease-in-out">
+          <span className="absolute bottom-[85%] left-[80%] hover:left-[100%] hover:scale-150 transition-all duration-1000 ease-in-out">
             <StarIcon color="#FFD700" />
           </span>
           <h1
@@ -68,7 +68,7 @@ const Hero = () => {
             inView ? "translate-x-0 opacity-100" : "translate-x-16 opacity-0",
           )}
         >
-          <img src="/assets/images/hero-image.png" alt="Hero Image" />
+          <img src="/assets/images/hero-image.png" alt="Hero Image" className="-ml-12" />
         </div>
       </div>
 

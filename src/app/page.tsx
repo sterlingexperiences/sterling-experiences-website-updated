@@ -1,12 +1,13 @@
-import Hero from "@/components/home/Hero"
-import MarqueeTape from "@/components/home/MarqueeTape"
-import Testimonials from "@/components/home/Testimonials"
-import { PageLayout } from "@/components/layout/PageLayout"
-import FromFunfairs from "@/components/home/FromFunfairs"
-import OurExpertise from "@/components/home/OurExpertise"
-import EventStaffing from "@/components/home/EventStaffing"
-import Portfolio from "@/components/home/Portfolio"
-import Contact from "@/components/home/Contact"
+import { EventsOpsBanner } from "@/components/home/EventsOpsBanner";
+import Hero from "@/components/home/Hero";
+import MarqueeTape from "@/components/home/MarqueeTape";
+import Testimonials from "@/components/home/Testimonials";
+import { PageLayout } from "@/components/layout/PageLayout";
+import FromFunfairs from "@/components/home/FromFunfairs";
+import OurExpertise from "@/components/home/OurExpertise";
+import EventStaffing from "@/components/home/EventStaffing";
+import Portfolio from "@/components/home/Portfolio";
+import Contact from "@/components/home/Contact";
 
 export default function Home() {
   return (
@@ -15,6 +16,7 @@ export default function Home() {
         <Hero />
       </PageLayout>
       <MarqueeTape />
+      <EventsOpsBanner />
       <Testimonials />
       <PageLayout>
         <FromFunfairs />
@@ -24,5 +26,5 @@ export default function Home() {
         <Contact />
       </PageLayout>
     </div>
-  )
+  );
 }
