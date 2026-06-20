@@ -24,9 +24,9 @@ export function EventsOpsBanner() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative w-full bg-secondary overflow-hidden pt-0 md:pt-0 pb-0 md:pb-0">
+    <section ref={sectionRef} className="relative w-full bg-secondary overflow-hidden pt-12 md:pt-16 pb-12 md:pb-16">
       {/* Desktop layout */}
-      <div className="hidden md:flex justify-between items-center max-w-[1400px] mx-auto px-12 2xl:px-20 gap-12">
+      <div className="hidden md:flex justify-between items-center max-w-[1400px] mx-auto px-16 2xl:px-24 gap-8">
         <div className="font-openSans max-w-[580px]">
           <h2
             className={cn(
@@ -83,7 +83,7 @@ export function EventsOpsBanner() {
 
         <div
           className={cn(
-            "shrink-0 transition-all duration-800 delay-200 ease-[cubic-bezier(0.4,0,0.2,1)]",
+            "shrink-0 self-center transition-all duration-800 delay-200 ease-[cubic-bezier(0.4,0,0.2,1)]",
             inView ? "translate-x-0 opacity-100" : "translate-x-16 opacity-0",
           )}
         >
