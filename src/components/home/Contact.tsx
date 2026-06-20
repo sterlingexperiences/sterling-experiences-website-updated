@@ -102,7 +102,7 @@ const Contact = () => {
         <h1 className="font-ebGaramond font-[500] md:font-[600] text-[36px] md:text-[56px] text-[#800080] leading-[43px] md:leading-[78px] tracking-[-0.04em] text-center md:text-left">
           Send us a message today or book a free consultation
         </h1>
-        <div className="flex items-center justify-center md:justify-start mt-6 md:mt-8">
+        <div className="flex items-center justify-center md:justify-start mt-8 md:mt-12">
           <Calender title="Schedule free consultation" variant="secondary" />
         </div>
         <span className="hidden md:block absolute top-[-40%] md:top-[150%] left-[80%] md:left-[30%] hover:left-[50%] hover:scale-150 transition-all duration-1000 ease-in-out">
