@@ -71,7 +71,7 @@ const Testimonials = () => {
             What our clients say
           </span>
         </h1>
-        <div className="relative h-[140px] overflow-hidden mt-[18px]">
+        <div className="relative h-[220px] overflow-hidden mt-[18px]">
           {testimonials.map((testimonial, index) => (
             <div
               key={index}
