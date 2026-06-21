@@ -1,20 +1,14 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
-import { ChevronDown } from "lucide-react";
-
-type AccordionBlock = {
-  title: string;
-  items: string[];
-};
 
 type ServiceSectionProps = {
   id: string;
   title: string;
   headline: string;
-  body: string[];
-  accordionBlocks: AccordionBlock[];
+  body: string;
+  subtitle?: string;
 };
 
 const ServiceSection = ({
@@ -22,39 +16,21 @@ const ServiceSection = ({
   title,
   headline,
   body,
-  accordionBlocks,
+  subtitle,
 }: ServiceSectionProps) => {
-  const [accordionOpen, setAccordionOpen] = useState(false);
   const [inView, setInView] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
-  const accordionContentRef = useRef<HTMLDivElement>(null);
-  const [accordionHeight, setAccordionHeight] = useState(0);
 
   useEffect(() => {
     const el = sectionRef.current;
     if (!el) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setInView(true);
-          observer.disconnect();
-        }
-      },
+    const o = new IntersectionObserver(
+      ([e]) => { if (e.isIntersecting) { setInView(true); o.disconnect(); } },
       { threshold: 0.15 },
     );
-    observer.observe(el);
-    return () => observer.disconnect();
+    o.observe(el);
+    return () => o.disconnect();
   }, []);
-
-  useEffect(() => {
-    if (accordionOpen && accordionContentRef.current) {
-      setAccordionHeight(accordionContentRef.current.scrollHeight);
-    } else {
-      setAccordionHeight(0);
-    }
-  }, [accordionOpen]);
-
-  const toggleAccordion = () => setAccordionOpen((prev) => !prev);
 
   return (
     <section
@@ -156,73 +132,29 @@ const ServiceSection = ({
 
               {/* Body text — slide up */}
               <div className="max-w-[800px] mx-auto">
+                <p
+                  className={cn(
+                    "font-openSans text-[15px] md:text-[17px] lg:text-[18px] text-neutral-700 leading-[1.75] tracking-[-0.01em] text-center transition-all duration-700 delay-300 ease-[cubic-bezier(0.4,0,0.2,1)]",
+                    inView ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0",
+                  )}
+                >
+                  {body}
+                </p>
+              </div>
+
+              {/* Subtitle tag */}
+              {subtitle && (
                 <div
                   className={cn(
-                    "space-y-5 font-openSans text-[15px] md:text-[17px] lg:text-[18px] text-neutral-700 leading-[1.75] tracking-[-0.01em] text-center transition-all duration-700 delay-300 ease-[cubic-bezier(0.4,0,0.2,1)]",
-                    inView
-                      ? "translate-y-0 opacity-100"
-                      : "translate-y-10 opacity-0",
+                    "text-center transition-all duration-700 delay-[450ms] ease-[cubic-bezier(0.4,0,0.2,1)]",
+                    inView ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0",
                   )}
                 >
-                  {body.map((paragraph, i) => (
-                    <p key={i}>{paragraph}</p>
-                  ))}
+                  <span className="inline-block font-ebGaramond text-[16px] md:text-[20px] text-brand-purple/60 font-[500] tracking-[-0.01em] border border-brand-purple/20 rounded-full px-6 py-2">
+                    {subtitle}
+                  </span>
                 </div>
-              </div>
-
-              {/* Learn More Button */}
-              <div
-                className={cn(
-                  "flex justify-center transition-all duration-700 delay-[450ms] ease-[cubic-bezier(0.4,0,0.2,1)]",
-                  inView ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0",
-                )}
-              >
-                <button
-                  onClick={toggleAccordion}
-                  className={cn(
-                    "group flex items-center gap-2 font-openSans text-[15px] font-semibold text-brand-purple cursor-pointer transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] active:scale-[0.97] px-6 py-3 rounded-[12px] border border-brand-purple/30 hover:border-brand-purple/60 hover:bg-brand-purple/[0.03]",
-                  )}
-                >
-                  <span>{accordionOpen ? "Show Less" : "Learn More"}</span>
-                  <ChevronDown
-                    className={cn(
-                      "size-4 transition-transform duration-300 ease-[cubic-bezier(0.4,0,0.2,1)]",
-                      accordionOpen ? "rotate-180" : "",
-                    )}
-                  />
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Accordion content */}
-        <div
-          className="overflow-hidden transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] max-w-[1100px] mx-auto"
-          style={{ maxHeight: accordionHeight ? `${accordionHeight}px` : "0px" }}
-        >
-          <div ref={accordionContentRef} className="pt-8 md:px-8">
-            <div className="p-6 md:p-10 bg-brand-purple/[0.03] border border-brand-purple/10 rounded-[16px]">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
-                {accordionBlocks.map((block, i) => (
-                  <div key={i}>
-                    <h4 className="font-ebGaramond text-[20px] md:text-[24px] font-[600] text-brand-purple tracking-[-0.02em] mb-5">
-                      {block.title}
-                    </h4>
-                    <ul className="space-y-3.5">
-                      {block.items.map((item, j) => (
-                        <li
-                          key={j}
-                          className="flex items-start gap-3 font-openSans text-[14px] md:text-[15px] text-neutral-700 leading-[1.5]"
-                        >
-                          <span className="mt-[7px] w-[6px] h-[6px] rounded-full bg-brand-gold shrink-0" />
-                          <span>{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                ))}
-              </div>
+              )}
             </div>
           </div>
         </div>
