@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { PageLayout } from "@/components/layout/PageLayout";
 import Header from "@/components/about/Header";
 import StorySection from "@/components/about/StorySection";
@@ -6,6 +7,12 @@ import MeetTheFounder from "@/components/about/MeetTheFounder";
 import MissionVision from "@/components/about/MissionVision";
 import CoreValues from "@/components/about/CoreValues";
 import Contact from "@/components/home/Contact";
+
+export const metadata: Metadata = {
+  title: "About",
+  description:
+    "Learn about Sterling Experiences. Our mission to set the standard for how Africa gathers through precision-designed events and operational excellence.",
+};
 
 export default function AboutPage() {
   return (

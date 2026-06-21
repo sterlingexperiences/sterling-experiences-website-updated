@@ -155,7 +155,7 @@ function PinCard({
                   )}
                 </div>
                 {cs.clientFeedback && (
-                  <div className="bg-brand-purple/[0.04] border-l-4 border-brand-gold rounded-r-[8px] p-3">
+                  <div className="bg-brand-gold/10 border border-brand-gold/20 rounded-[8px] p-3">
                     <p className="font-openSans text-[12px] text-neutral-700 leading-[1.6] italic">
                       &ldquo;{cs.clientFeedback.quote}&rdquo;
                     </p>
