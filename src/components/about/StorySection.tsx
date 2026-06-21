@@ -76,7 +76,7 @@ const StorySection = () => {
               : "translate-y-6 opacity-0",
           )}
         >
-          Company Story &<br className="md:hidden" /> Founder Biography
+          What We Believe
         </h1>
 
         {/* Right divider — grows from left with glow */}
@@ -149,7 +149,7 @@ const StorySection = () => {
               We believe every event is an argument for something
             </h2>
 
-            {/* Body text — slide up with staggered delays */}
+            {/* Body text — slide up */}
             <div className="max-w-[800px] mx-auto">
               <div
                 className={cn(
@@ -159,28 +159,12 @@ const StorySection = () => {
                     : "translate-y-10 opacity-0",
                 )}
               >
-                <p>
-                  An argument that this organisation matters. That these people
-                  are worth gathering. That this moment deserves to be done
-                  well. Sterling Experiences was founded to make that argument,
-                  beautifully and without fail, for every client we work with.
+                <p className="text-[17px] md:text-[20px] lg:text-[22px] font-ebGaramond text-brand-purple/80 italic">
+                  Exceptional events are not built on improvisation.<br />
+                  They are built on systems, intention, and attention to detail.
                 </p>
                 <p>
-                  That understanding became Sterling Experiences. With over six
-                  years of project management experience and a portfolio that
-                  spans tech summits, startup competitions, product launches,
-                  and social celebrations, Joy built a company around a standard
-                  she refuses to lower: that the quality of an event reflects
-                  the value an organisation places on the people it is
-                  gathering.
-                </p>
-                <p>
-                  Today, Sterling Experiences operates across five service
-                  pillars &mdash; production, decor and styling, staffing,
-                  operations, and logistics &mdash; serving corporate
-                  organisations, government bodies, and private clients who
-                  expect more than a well-managed event. They expect an
-                  experience.
+                  Sterling Experiences exists to raise the standard for how events are designed, managed, and remembered across Africa.
                 </p>
               </div>
             </div>

@@ -26,21 +26,18 @@ const MissionVision = () => {
   const items = [
     {
       title: "Our Mission",
-      tagline: "To set the standard for how Africa gathers.",
-      body: "We build the operational and creative infrastructure that lets organisations bring people together with confidence. From a 50-person board retreat to a 5,000-attendee tech summit, we deliver the same rigour: every detail accounted for, every stakeholder communicated with, every moment designed to land.",
-      practice: "Rigorous pre-event planning. Real-time coordination on the day. Post-event debrief that feeds back into the next event. No event is too small for our full process, and no event is too large for our team to handle.",
+      tagline:
+        "To set the standard for how Africa gathers through experiences that are designed with precision, executed without compromise, and felt long after they end.",
     },
     {
       title: "Our Vision",
-      tagline: "A world where every significant gathering is a well-crafted experience.",
-      body: "We believe that how an organisation gathers reflects who it is. When done right, an event does not just communicate a message. It embodies it. Our vision is a continent where meetings, launches, celebrations, and conferences are approached with the same intentionality as the work they support.",
-      practice: "We invest in tools, talent, and systems that raise the floor for every project. We share what we learn across events so each one is better than the last. And we measure our success not by the event itself but by what it makes possible for our clients afterward.",
+      tagline:
+        "A world where every significant gathering is a well-crafted experience delivered at the highest possible standard and powered by an African company built to lead globally.",
     },
     {
       title: "Brand Purpose",
       tagline: "Experiences that move people.",
       body: "At our core, we exist to move people. Not just emotionally, though that matters. But forward. An event is a catalyst. It accelerates relationships, decisions, and momentum. Our purpose is to make that acceleration happen smoothly, memorably, and without the organisers having to sacrifice their sanity.",
-      practice: "Every decision we make, from the suppliers we choose to the timelines we build, is measured against one question: does this move the experience forward? If it does not serve the guest, the client, or the moment, it does not belong in the plan.",
     },
   ];
 
@@ -80,7 +77,12 @@ const MissionVision = () => {
               style={{ transitionDelay: `${(index + 1) * 150}ms` }}
             >
               {/* Left column — title + tagline */}
-              <div className="md:w-[35%] shrink-0">
+              <div
+                className={cn(
+                  "shrink-0",
+                  item.body ? "md:w-[35%]" : "w-full max-w-[800px] mx-auto text-center",
+                )}
+              >
                 <h3
                   className={cn(
                     "font-ebGaramond text-[28px] md:text-[36px] font-[600] tracking-[-0.03em] leading-[1.2]",
@@ -94,32 +96,14 @@ const MissionVision = () => {
                 </p>
               </div>
 
-              {/* Right column — body + practice */}
-              <div className="flex-1 space-y-5">
-                <p className="font-openSans text-[14px] md:text-[16px] lg:text-[17px] text-neutral-700 leading-[1.7] tracking-[-0.01em]">
-                  {item.body}
-                </p>
-                <div
-                  className={cn(
-                    "p-4 md:p-5 rounded-[12px] border-l-4",
-                    index % 2 === 0
-                      ? "bg-brand-purple/[0.04] border-brand-purple/40"
-                      : "bg-white/60 border-brand-gold",
-                  )}
-                >
-                  <span
-                    className={cn(
-                      "font-openSans text-[12px] font-semibold uppercase tracking-[0.06em]",
-                      index % 2 === 0 ? "text-brand-purple" : "text-neutral-600",
-                    )}
-                  >
-                    What this means in practice
-                  </span>
-                  <p className="mt-2 font-openSans text-[13px] md:text-[15px] text-neutral-600 leading-[1.6]">
-                    {item.practice}
+              {/* Right column — body only for Brand Purpose */}
+              {item.body && (
+                <div className="flex-1 space-y-5">
+                  <p className="font-openSans text-[14px] md:text-[16px] lg:text-[17px] text-neutral-700 leading-[1.7] tracking-[-0.01em]">
+                    {item.body}
                   </p>
                 </div>
-              </div>
+              )}
             </div>
           ))}
         </div>
