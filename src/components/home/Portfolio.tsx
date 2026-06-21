@@ -5,7 +5,7 @@ import Link from "next/link";
 import { ArrowRight } from "@/components/ui/assets-icons";
 import { Button } from "@/components/ui/button";
 
-const Portfolio = () => {
+const OurWork = () => {
   const [inView, setInView] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
 
@@ -33,7 +33,7 @@ const Portfolio = () => {
           inView ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0",
         )}
       >
-        Portfolio
+        Our Work
       </h1>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-[24px] py-[34px] md:py-[89px] px-[14px] md:px-[60px] border border-[#800080] bg-[#FFFFFF] rounded-[16px]">
@@ -69,7 +69,7 @@ const Portfolio = () => {
       <div className="flex items-center justify-center mt-[30px]">
         <Button asChild variant="secondary" className="w-[250px] md:w-[408px]">
           <Link href="portfolio">
-            See more
+            View our Work
             <ArrowRight />
           </Link>
         </Button>
@@ -78,4 +78,4 @@ const Portfolio = () => {
   );
 };
 
-export default Portfolio;
+export default OurWork;

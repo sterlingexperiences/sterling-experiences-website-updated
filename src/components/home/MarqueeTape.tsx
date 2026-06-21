@@ -1,15 +1,17 @@
 import Marquee from "react-fast-marquee";
 
 const items = [
-  { type: "text" as const, content: "Corporate Conferences" },
+  { type: "text" as const, content: "Event Operations" },
   { type: "logo" as const, src: "/Sterling%20Experiences%20Logo%20purple.png", alt: "Sterling Logo" },
-  { type: "text" as const, content: "Startup Ecosystems" },
+  { type: "text" as const, content: "Decoration & Styling" },
   { type: "logo" as const, src: "/sterling_experiences.jpg", alt: "Sterling Experiences" },
-  { type: "text" as const, content: "Institutional Events" },
+  { type: "text" as const, content: "Experience Design" },
   { type: "logo" as const, src: "/Sterling%20Experiences%20Logo%20purple.png", alt: "Sterling Logo" },
-  { type: "text" as const, content: "Social Experiences" },
+  { type: "text" as const, content: "Event Production" },
   { type: "logo" as const, src: "/sterling_experiences.jpg", alt: "Sterling Experiences" },
-  { type: "text" as const, content: "Brand Activations" },
+  { type: "text" as const, content: "Logistics" },
+  { type: "logo" as const, src: "/Sterling%20Experiences%20Logo%20purple.png", alt: "Sterling Logo" },
+  { type: "text" as const, content: "Coordination" },
 ];
 
 const MarqueeTape = () => {

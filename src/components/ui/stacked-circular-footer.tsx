@@ -39,7 +39,7 @@ function StackedCircularFooter() {
           <Link href="/about" className="text-[15px] font-body text-brand-purple hover:text-neutral-900 transition-colors">
             About
           </Link>
-          <Link href="/insights" className="text-[15px] font-body text-brand-purple hover:text-neutral-900 transition-colors">
+          <Link href="/insight" className="text-[15px] font-body text-brand-purple hover:text-neutral-900 transition-colors">
             Insights
           </Link>
           <Link href="/contact" className="text-[15px] font-body text-brand-purple hover:text-neutral-900 transition-colors">

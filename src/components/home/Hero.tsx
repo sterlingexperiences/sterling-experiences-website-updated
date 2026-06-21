@@ -2,7 +2,8 @@
 import { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 import { FunfairStarIcon, SmallStarIcon, StarIcon } from "@/components/ui/assets-icons";
-import Calender from "@/components/CalEmbed";
+import BookingModal from "@/components/BookingModal";
+import { Button } from "@/components/ui/button";
 
 const Hero = () => {
   const [inView, setInView] = useState(false);
@@ -58,7 +59,13 @@ const Hero = () => {
               inView ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0",
             )}
           >
-            <Calender title="Schedule free consultation" variant="primary" className="mt-4" />
+            <BookingModal
+              trigger={
+                <Button variant="primary" className="mt-4">
+                  Book a Consultation
+                </Button>
+              }
+            />
           </div>
         </div>
 
@@ -108,7 +115,13 @@ const Hero = () => {
               inView ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0",
             )}
           >
-            <Calender title="Schedule free consultation" variant="primary" className="mt-4" />
+            <BookingModal
+              trigger={
+                <Button variant="primary" className="mt-4">
+                  Book a Consultation
+                </Button>
+              }
+            />
           </div>
         </div>
 

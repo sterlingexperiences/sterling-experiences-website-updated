@@ -15,7 +15,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
-import CalButton from "@/components/cal-button";
+import BookingModal from "@/components/BookingModal";
 import { cn } from "@/lib/utils";
 
 type DropdownItem = {
@@ -51,8 +51,8 @@ const navItems: NavItem[] = [
     ],
   },
   { label: "About", href: "/about" },
-  { label: "Portfolio", href: "/portfolio" },
-  { label: "Get in Touch", href: "/contact" },
+  { label: "Insights", href: "/insight" },
+  { label: "Contact", href: "/contact" },
 ];
 
 export default function Navbar() {
@@ -160,9 +160,12 @@ export default function Navbar() {
 
               {/* Desktop CTA */}
               <div className="hidden md:flex items-center">
-                <CalButton
-                  title="Book a Consultation"
-                  variant="primary"
+                <BookingModal
+                  trigger={
+                    <Button variant="primary">
+                      Book a Consultation
+                    </Button>
+                  }
                 />
               </div>
 
@@ -290,10 +293,12 @@ export default function Navbar() {
 
                   <div className="px-4 pb-8 pt-2 border-t border-neutral-200">
                     <SheetClose asChild>
-                      <CalButton
-                        title="Book a Consultation"
-                        variant="primary"
-                        className="w-full"
+                      <BookingModal
+                        trigger={
+                          <Button variant="primary" className="w-full">
+                            Book a Consultation
+                          </Button>
+                        }
                       />
                     </SheetClose>
                   </div>

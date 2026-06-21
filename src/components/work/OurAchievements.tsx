@@ -16,7 +16,7 @@ const OurAchievements = () => {
       accordionBlocks={[]}
       hideAccordionToggle
       accordionCentered
-      cta={{ label: "View Our Portfolio", href: "/portfolio" }}
+      cta={{ label: "View Our Portfolio", href: "/insight" }}
     />
   );
 };

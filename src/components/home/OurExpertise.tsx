@@ -5,6 +5,14 @@ import Link from "next/link";
 import { ArrowRight } from "@/components/ui/assets-icons";
 import { Button } from "@/components/ui/button";
 
+const services = [
+  "Event Production",
+  "Decor & Styling",
+  "Staffing",
+  "Event Operations",
+  "Logistics",
+];
+
 const OurExpertise = () => {
   const [inView, setInView] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -40,168 +48,118 @@ const OurExpertise = () => {
         <div className="w-full max-w-[252px] h-[2px] bg-[#FFD700]" />
       </div>
 
-      <div className="hidden lg:flex items-start justify-center gap-[45px] mt-20">
-        <div className="flex flex-col space-y-[24px]">
-          <div
-            className={cn(
-              "flex items-center justify-center bg-secondary rounded-[16px] w-[368px] h-[132px] font-openSans font-[600] text-[28px] text-[#800080] leading-[39px] tracking-[-0.02em] border border-[#800080] transition-all duration-700 ease-[cubic-bezier(0.4,0,0.2,1)]",
-              inView ? "translate-x-0 opacity-100" : "-translate-x-12 opacity-0",
-            )}
-            style={{ transitionDelay: "100ms" }}
-          >
-            Cooperate Retreats
-          </div>
-          <div
-            className={cn(
-              "flex items-center justify-center bg-[#FFD700] rounded-[16px] w-[368px] h-[132px] font-openSans font-[600] text-[28px] text-[#800080] leading-[39px] tracking-[-0.02em] border border-[#800080] transition-all duration-700 ease-[cubic-bezier(0.4,0,0.2,1)]",
-              inView ? "translate-x-0 opacity-100" : "-translate-x-12 opacity-0",
-            )}
-            style={{ transitionDelay: "200ms" }}
-          >
-            Product Launches
-          </div>
-          <div
-            className={cn(
-              "flex items-center justify-center bg-[#800080] rounded-[16px] w-[368px] h-[132px] font-openSans font-[600] text-[28px] text-secondary leading-[39px] tracking-[-0.02em] transition-all duration-700 ease-[cubic-bezier(0.4,0,0.2,1)]",
-              inView ? "translate-x-0 opacity-100" : "-translate-x-12 opacity-0",
-            )}
-            style={{ transitionDelay: "300ms" }}
-          >
-            Seminars
-          </div>
-        </div>
+      {/* Desktop */}
+      <div className="hidden lg:flex items-center justify-center gap-[32px] mt-16 flex-wrap">
+        {services.map((service, i) => {
+          const bgVariants = [
+            "bg-secondary border border-[#800080] text-[#800080]",
+            "bg-[#FFD700] border border-[#800080] text-[#800080]",
+            "bg-[#800080] text-secondary",
+            "bg-secondary border border-[#800080] text-[#800080]",
+            "bg-[#800080] text-secondary",
+          ];
+          const delayVariants = ["100ms", "200ms", "300ms", "400ms", "500ms"];
+          const dirVariants = [
+            "-translate-x-12",
+            "-translate-y-12",
+            "translate-y-12",
+            "translate-x-12",
+            "translate-x-0 -translate-y-12",
+          ];
 
-        <div className="flex flex-col items-center space-y-[20px]">
-          <div
-            className={cn(
-              "flex items-center justify-center bg-secondary rounded-[16px] w-[368px] h-[132px] font-openSans font-[600] text-[28px] text-[#800080] leading-[39px] tracking-[-0.02em] border border-[#800080] transition-all duration-700 ease-[cubic-bezier(0.4,0,0.2,1)]",
-              inView ? "translate-y-0 opacity-100" : "translate-y-12 opacity-0",
-            )}
-            style={{ transitionDelay: "200ms" }}
-          >
-            Corporate Gifting
-          </div>
-          <div
-            className={cn(
-              "flex items-center justify-center bg-[#800080] rounded-[16px] w-[368px] h-[132px] font-openSans font-[600] text-[28px] text-secondary leading-[39px] tracking-[-0.02em] transition-all duration-700 ease-[cubic-bezier(0.4,0,0.2,1)]",
-              inView ? "translate-y-0 opacity-100" : "translate-y-12 opacity-0",
-            )}
-            style={{ transitionDelay: "350ms" }}
-          >
-            Conferences
-          </div>
-          <div className="h-[132px] w-full flex items-center justify-center">
-            <Link href="services">
-              <Button variant="secondary" className="w-[185px]">
-                Explore Services
-                <ArrowRight />
-              </Button>
-            </Link>
-          </div>
-        </div>
+          return (
+            <div
+              key={service}
+              className={cn(
+                "flex items-center justify-center rounded-[16px] w-[220px] h-[120px] font-openSans font-[600] text-[22px] leading-[30px] tracking-[-0.02em] transition-all duration-700 ease-[cubic-bezier(0.4,0,0.2,1)]",
+                bgVariants[i],
+                inView ? "translate-x-0 translate-y-0 opacity-100" : `${dirVariants[i]} opacity-0`,
+              )}
+              style={{ transitionDelay: delayVariants[i] }}
+            >
+              {service}
+            </div>
+          );
+        })}
+      </div>
 
-        <div className="flex flex-col space-y-[24px]">
-          <div
-            className={cn(
-              "flex items-center justify-center bg-secondary rounded-[16px] w-[368px] h-[132px] font-openSans font-[600] text-[28px] text-[#800080] leading-[39px] tracking-[-0.02em] border border-[#800080] transition-all duration-700 ease-[cubic-bezier(0.4,0,0.2,1)]",
-              inView ? "translate-x-0 opacity-100" : "translate-x-12 opacity-0",
-            )}
-            style={{ transitionDelay: "100ms" }}
-          >
-            Team Building Events
-          </div>
-          <div
-            className={cn(
-              "flex items-center justify-center bg-[#FFD700] rounded-[16px] w-[368px] h-[132px] font-openSans font-[600] text-[28px] text-[#800080] leading-[39px] tracking-[-0.02em] border border-[#800080] transition-all duration-700 ease-[cubic-bezier(0.4,0,0.2,1)]",
-              inView ? "translate-x-0 opacity-100" : "translate-x-12 opacity-0",
-            )}
-            style={{ transitionDelay: "200ms" }}
-          >
-            Destination Management
-          </div>
-          <div
-            className={cn(
-              "flex items-center justify-center bg-[#800080] rounded-[16px] w-[368px] h-[132px] font-openSans font-[600] text-[28px] text-secondary leading-[39px] tracking-[-0.02em] transition-all duration-700 ease-[cubic-bezier(0.4,0,0.2,1)]",
-              inView ? "translate-x-0 opacity-100" : "translate-x-12 opacity-0",
-            )}
-            style={{ transitionDelay: "300ms" }}
-          >
-            Social Events
-          </div>
+      {/* Tablet layout */}
+      <div className="hidden md:flex lg:hidden flex-col items-center gap-[16px] mt-12">
+        <div className="flex flex-wrap justify-center gap-[16px]">
+          {services.map((service, i) => {
+            const bgVariants = [
+              "bg-secondary border border-[#800080] text-[#800080]",
+              "bg-[#FFD700] border border-[#800080] text-[#800080]",
+              "bg-[#800080] text-secondary",
+              "bg-secondary border border-[#800080] text-[#800080]",
+              "bg-[#800080] text-secondary",
+            ];
+
+            return (
+              <div
+                key={service}
+                className={cn(
+                  "flex items-center justify-center rounded-[16px] w-[200px] h-[100px] font-openSans font-[600] text-[20px] leading-[28px] tracking-[-0.02em] transition-all duration-700 ease-[cubic-bezier(0.4,0,0.2,1)]",
+                  bgVariants[i],
+                  inView ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0",
+                )}
+                style={{ transitionDelay: `${100 + i * 80}ms` }}
+              >
+                {service}
+              </div>
+            );
+          })}
+        </div>
+        <div className="mt-4">
+          <Link href="/services">
+            <Button variant="secondary" className="w-[200px]">
+              Explore Services
+              <ArrowRight />
+            </Button>
+          </Link>
         </div>
       </div>
 
-      {/* mobile */}
-      <div className="flex flex-col space-y-[12px] mt-[16px] lg:hidden">
-        <div
-          className={cn(
-            "flex items-center justify-center bg-[#800080] rounded-[16px] w-full h-[60px] font-openSans font-[600] text-[18px] text-secondary leading-[25px] tracking-[-0.02em] transition-all duration-700 ease-[cubic-bezier(0.4,0,0.2,1)]",
-            inView ? "translate-x-0 opacity-100" : "-translate-x-8 opacity-0",
-          )}
-          style={{ transitionDelay: "50ms" }}
-        >
-          Conferences & Seminars
-        </div>
-        <div
-          className={cn(
-            "flex items-center justify-center bg-[#FFD700] rounded-[16px] w-full h-[60px] font-openSans font-[600] text-[18px] text-[#800080] leading-[25px] tracking-[-0.02em] border border-[#800080] transition-all duration-700 ease-[cubic-bezier(0.4,0,0.2,1)]",
-            inView ? "translate-x-0 opacity-100" : "translate-x-8 opacity-0",
-          )}
-          style={{ transitionDelay: "100ms" }}
-        >
-          Product Launches
-        </div>
-        <div
-          className={cn(
-            "flex items-center justify-center bg-secondary rounded-[16px] w-full h-[60px] font-openSans font-[600] text-[18px] text-[#800080] leading-[25px] tracking-[-0.02em] border border-[#800080] transition-all duration-700 ease-[cubic-bezier(0.4,0,0.2,1)]",
-            inView ? "translate-x-0 opacity-100" : "-translate-x-8 opacity-0",
-          )}
-          style={{ transitionDelay: "150ms" }}
-        >
-          Corporate Retreats
-        </div>
-        <div
-          className={cn(
-            "flex items-center justify-center bg-[#800080] rounded-[16px] w-full h-[60px] font-openSans font-[600] text-[18px] text-secondary leading-[25px] tracking-[-0.02em] transition-all duration-700 ease-[cubic-bezier(0.4,0,0.2,1)]",
-            inView ? "translate-x-0 opacity-100" : "translate-x-8 opacity-0",
-          )}
-          style={{ transitionDelay: "200ms" }}
-        >
-          Corporate Gifting
-        </div>
-        <div
-          className={cn(
-            "flex items-center justify-center bg-secondary rounded-[16px] w-full h-[60px] font-openSans font-[600] text-[18px] text-[#800080] leading-[25px] tracking-[-0.02em] border border-[#800080] transition-all duration-700 ease-[cubic-bezier(0.4,0,0.2,1)]",
-            inView ? "translate-x-0 opacity-100" : "-translate-x-8 opacity-0",
-          )}
-          style={{ transitionDelay: "250ms" }}
-        >
-          Team Building
-        </div>
-        <div
-          className={cn(
-            "flex items-center justify-center bg-[#FFD700] rounded-[16px] w-full h-[60px] font-openSans font-[600] text-[18px] text-[#800080] leading-[25px] tracking-[-0.02em] border border-[#800080] transition-all duration-700 ease-[cubic-bezier(0.4,0,0.2,1)]",
-            inView ? "translate-x-0 opacity-100" : "translate-x-8 opacity-0",
-          )}
-          style={{ transitionDelay: "300ms" }}
-        >
-          Destination Management
-        </div>
-        <div
-          className={cn(
-            "flex items-center justify-center bg-[#800080] rounded-[16px] w-full h-[60px] font-openSans font-[600] text-[18px] text-secondary leading-[25px] tracking-[-0.02em] transition-all duration-700 ease-[cubic-bezier(0.4,0,0.2,1)]",
-            inView ? "translate-x-0 opacity-100" : "translate-x-8 opacity-0",
-          )}
-          style={{ transitionDelay: "350ms" }}
-        >
-          Social Events
-        </div>
+      {/* Mobile */}
+      <div className="flex flex-col space-y-[12px] mt-[16px] lg:hidden md:hidden">
+        {services.map((service, i) => {
+          const bgVariants = [
+            "bg-[#800080] text-secondary",
+            "bg-[#FFD700] border border-[#800080] text-[#800080]",
+            "bg-secondary border border-[#800080] text-[#800080]",
+            "bg-[#800080] text-secondary",
+            "bg-[#FFD700] border border-[#800080] text-[#800080]",
+          ];
+          const dirVariants = [
+            "-translate-x-8",
+            "translate-x-8",
+            "-translate-x-8",
+            "translate-x-8",
+            "-translate-x-8",
+          ];
 
-        <div className="flex items-center justify-center">
-          <Button variant="secondary" className="w-[185px] mt-4">
-            Explore Services
-            <ArrowRight />
-          </Button>
+          return (
+            <div
+              key={service}
+              className={cn(
+                "flex items-center justify-center rounded-[16px] w-full h-[60px] font-openSans font-[600] text-[18px] leading-[25px] tracking-[-0.02em] transition-all duration-700 ease-[cubic-bezier(0.4,0,0.2,1)]",
+                bgVariants[i],
+                inView ? "translate-x-0 opacity-100" : `${dirVariants[i]} opacity-0`,
+              )}
+              style={{ transitionDelay: `${50 + i * 60}ms` }}
+            >
+              {service}
+            </div>
+          );
+        })}
+
+        <div className="flex items-center justify-center mt-4">
+          <Link href="/services">
+            <Button variant="secondary" className="w-[200px]">
+              Explore Services
+              <ArrowRight />
+            </Button>
+          </Link>
         </div>
       </div>
     </div>

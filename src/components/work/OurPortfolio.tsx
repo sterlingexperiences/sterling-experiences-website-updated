@@ -14,7 +14,7 @@ const OurPortfolio = () => {
         "To view the full gallery and detailed case studies, visit our dedicated portfolio page.",
       ]}
       hideAccordionToggle
-      cta={{ label: "View Full Portfolio", href: "/portfolio" }}
+      cta={{ label: "View Full Portfolio", href: "/insight" }}
       accordionBlocks={[
         {
           title: "Event categories in our portfolio",

@@ -2,6 +2,8 @@
 import { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 export function EventsOpsBanner() {
   const [inView, setInView] = useState(false);
@@ -23,6 +25,15 @@ export function EventsOpsBanner() {
     return () => observer.disconnect();
   }, []);
 
+  const features = [
+    "Inventory tracking",
+    "Zero asset loss",
+    "Staff training & certification",
+    "Warehouse + venue + asset tracking",
+    "Rental & return management",
+    "Local implementation & onboarding support",
+  ];
+
   return (
     <section ref={sectionRef} className="relative w-full bg-secondary overflow-hidden pt-12 md:pt-16 pb-12 md:pb-16">
       {/* Desktop layout */}
@@ -34,30 +45,26 @@ export function EventsOpsBanner() {
               inView ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0",
             )}
           >
-            EventsOps
+            Sterling EventOps
           </h2>
           <p
             className={cn(
-              "mt-[6px] font-ebGaramond text-[22px] text-brand-purple/80 leading-[1.3] tracking-[-0.02em] transition-all duration-700 delay-150 ease-[cubic-bezier(0.4,0,0.2,1)]",
+              "mt-[6px] font-ebGaramond text-[18px] text-brand-purple/70 leading-[1.3] tracking-[-0.02em] transition-all duration-700 delay-150 ease-[cubic-bezier(0.4,0,0.2,1)]",
               inView ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0",
             )}
           >
-            Your all-in-one event management system
+            Operations infrastructure for Nigeria's event industry
           </p>
           <div
             className={cn(
-              "mt-6 space-y-4 transition-all duration-700 delay-200 ease-[cubic-bezier(0.4,0,0.2,1)]",
+              "mt-5 space-y-4 transition-all duration-700 delay-200 ease-[cubic-bezier(0.4,0,0.2,1)]",
               inView ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0",
             )}
           >
             <p className="text-[15px] lg:text-[16px] text-neutral-700 leading-[1.75]">
-              A powerful platform designed to simplify how you plan, coordinate, and execute events.
-              From vendor coordination to guest management, EventsOps puts everything in one place.
-            </p>
-            <p className="text-[15px] lg:text-[16px] text-neutral-700 leading-[1.75]">
-              Track inventory in real time, manage budgets, assign tasks, and monitor timelines
-              across every event in your calendar. Built for event professionals who need precision
-              without the complexity.
+              Sterling EventOps is the first operations platform built specifically for Nigeria's event
+              industry, giving event businesses inventory tracking, staff management, and digital audit
+              trail that they need to stop losing money and start building lasting legacies.
             </p>
           </div>
 
@@ -67,17 +74,26 @@ export function EventsOpsBanner() {
               inView ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0",
             )}
           >
-            {[
-              "Inventory tracking",
-              "Team coordination",
-              "Budget management",
-              "Guest & RSVP hub",
-            ].map((feature) => (
+            {features.map((feature) => (
               <div key={feature} className="flex items-center gap-3">
                 <span className="w-[6px] h-[6px] rounded-full bg-brand-gold shrink-0" />
                 <span className="text-[14px] text-neutral-700">{feature}</span>
               </div>
             ))}
+          </div>
+
+          {/* Desktop CTA */}
+          <div
+            className={cn(
+              "mt-8 transition-all duration-700 delay-[400ms] ease-[cubic-bezier(0.4,0,0.2,1)]",
+              inView ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0",
+            )}
+          >
+            <Link href="/early-access">
+              <Button variant="primary" className="px-8">
+                Get Early Access
+              </Button>
+            </Link>
           </div>
         </div>
 
@@ -89,7 +105,7 @@ export function EventsOpsBanner() {
         >
           <Image
             src="/assets/images/events-ops-banner.png"
-            alt="EventsOps App Preview"
+            alt="Sterling EventOps Platform Preview"
             width={540}
             height={675}
             className="h-[550px] w-auto object-contain"
@@ -101,29 +117,21 @@ export function EventsOpsBanner() {
       {/* Mobile layout */}
       <div className="md:hidden px-4">
         <div className="font-openSans flex flex-col items-center text-center">
-          <span
-            className={cn(
-              "inline-block font-ebGaramond text-brand-gold text-[14px] font-[500] tracking-[0.08em] uppercase mb-2 transition-all duration-700 ease-[cubic-bezier(0.4,0,0.2,1)]",
-              inView ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0",
-            )}
-          >
-            Coming Soon
-          </span>
           <h2
             className={cn(
               "font-ebGaramond font-[600] text-[32px] text-brand-purple leading-[1.15] tracking-[-0.04em] transition-all duration-700 delay-100 ease-[cubic-bezier(0.4,0,0.2,1)]",
               inView ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0",
             )}
           >
-            EventsOps
+            Sterling EventOps
           </h2>
           <p
             className={cn(
-              "mt-[4px] font-ebGaramond text-[17px] text-brand-purple/80 leading-[1.3] tracking-[-0.02em] max-w-[280px] transition-all duration-700 delay-150 ease-[cubic-bezier(0.4,0,0.2,1)]",
+              "mt-[4px] font-ebGaramond text-[17px] text-brand-purple/70 leading-[1.3] tracking-[-0.02em] max-w-[280px] transition-all duration-700 delay-150 ease-[cubic-bezier(0.4,0,0.2,1)]",
               inView ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0",
             )}
           >
-            Your all-in-one event management system
+            Operations infrastructure for Nigeria's event industry
           </p>
           <div
             className={cn(
@@ -132,12 +140,9 @@ export function EventsOpsBanner() {
             )}
           >
             <p className="text-[14px] text-neutral-700 leading-[1.7]">
-              A powerful platform designed to simplify how you plan, coordinate, and execute events.
-              From vendor coordination to guest management, EventsOps puts everything in one place.
-            </p>
-            <p className="text-[14px] text-neutral-700 leading-[1.7]">
-              Track inventory in real time, manage budgets, assign tasks, and monitor timelines
-              across every event in your calendar.
+              Sterling EventOps is the first operations platform built specifically for Nigeria's event
+              industry, giving event businesses inventory tracking, staff management, and digital audit
+              trail that they need to stop losing money and start building lasting legacies.
             </p>
           </div>
 
@@ -148,12 +153,7 @@ export function EventsOpsBanner() {
               inView ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0",
             )}
           >
-            {[
-              "Inventory tracking",
-              "Team coordination",
-              "Budget management",
-              "Guest & RSVP hub",
-            ].map((feature) => (
+            {features.map((feature) => (
               <div key={feature} className="flex items-center gap-2">
                 <span className="w-[5px] h-[5px] rounded-full bg-brand-gold shrink-0" />
                 <span className="text-[13px] text-neutral-700">{feature}</span>
@@ -161,16 +161,18 @@ export function EventsOpsBanner() {
             ))}
           </div>
 
-          {/* CTA */}
+          {/* Mobile CTA */}
           <div
             className={cn(
               "mt-8 transition-all duration-700 delay-[400ms] ease-[cubic-bezier(0.4,0,0.2,1)]",
               inView ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0",
             )}
           >
-            <span className="inline-block font-openSans text-[13px] font-semibold text-white bg-brand-purple cursor-pointer px-7 py-3 rounded-[12px] hover:bg-[#660066] shadow-[0_4px_20px_rgba(128,0,128,0.18)] transition-all duration-300">
-              Get Early Access
-            </span>
+            <Link href="/early-access">
+              <span className="inline-block font-openSans text-[13px] font-semibold text-white bg-brand-purple cursor-pointer px-7 py-3 rounded-[12px] hover:bg-[#660066] shadow-[0_4px_20px_rgba(128,0,128,0.18)] transition-all duration-300">
+                Get Early Access
+              </span>
+            </Link>
           </div>
         </div>
 
@@ -183,7 +185,7 @@ export function EventsOpsBanner() {
         >
           <Image
             src="/assets/images/events-ops-banner.png"
-            alt="EventsOps App Preview"
+            alt="Sterling EventOps Platform Preview"
             width={400}
             height={500}
             className="w-full max-w-[320px] h-auto object-contain"
