@@ -99,7 +99,7 @@ const Info = () => {
             style={{ transformOrigin: "right center" }}
           />
         </div>
-        <span className="font-ebGaramond text-[20px] md:text-[28px] text-brand-gold font-[500]">
+        <span className="font-ebGaramond text-[20px] md:text-[28px] text-brand-purple font-[600]">
           Get in touch
         </span>
         <div className="w-full max-w-[120px] md:max-w-[180px] h-[2px] overflow-hidden">
