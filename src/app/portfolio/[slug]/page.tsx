@@ -1,12 +1,12 @@
 import { notFound } from "next/navigation";
 import { PageLayout } from "@/components/layout/PageLayout";
 import PortfolioDetail from "@/components/portfolio/PortfolioDetail";
-import { portfolioEvents } from "@/data/portfolio";
+import { portfolioEvents, portfolioEditions } from "@/data/portfolio";
 
 export function generateStaticParams() {
-  return portfolioEvents.map((event) => ({
-    slug: event.slug,
-  }));
+  const slugs = new Set<string>();
+  [...portfolioEvents, ...portfolioEditions].forEach((e) => slugs.add(e.slug));
+  return Array.from(slugs).map((slug) => ({ slug }));
 }
 
 export default async function PortfolioEventPage({
@@ -15,7 +15,9 @@ export default async function PortfolioEventPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const event = portfolioEvents.find((e) => e.slug === slug);
+  const event =
+    portfolioEvents.find((e) => e.slug === slug) ||
+    portfolioEditions.find((e) => e.slug === slug);
   if (!event) notFound();
 
   return (

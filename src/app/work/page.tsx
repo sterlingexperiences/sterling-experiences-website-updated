@@ -2,7 +2,7 @@ import { PageLayout } from "@/components/layout/PageLayout"
 import WorkHeader from "@/components/work/WorkHeader"
 import OurAchievements from "@/components/work/OurAchievements"
 import WhatWeOffer from "@/components/work/WhatWeOffer"
-import OurPortfolio from "@/components/work/OurPortfolio"
+import PortfolioGallery from "@/components/portfolio/PortfolioGallery"
 import Contact from "@/components/home/Contact"
 
 export default function WorkPage() {
@@ -12,7 +12,7 @@ export default function WorkPage() {
       <PageLayout>
         <OurAchievements />
         <WhatWeOffer />
-        <OurPortfolio />
+        <PortfolioGallery />
         <Contact />
       </PageLayout>
     </div>

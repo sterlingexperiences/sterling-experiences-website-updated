@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
-import { portfolioEvents } from "@/data/portfolio";
+import { portfolioEditions } from "@/data/portfolio";
 import { ArrowRight } from "@/components/ui/assets-icons";
 
 const PastEvents = () => {
@@ -55,7 +55,7 @@ const PastEvents = () => {
             inView ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0",
           )}
         >
-          Our Past Events
+          Our Portfolio
         </h1>
 
         <div className="w-full max-w-[120px] md:max-w-[180px] h-[2px] overflow-hidden">
@@ -108,7 +108,7 @@ const PastEvents = () => {
 
         <div className="md:px-8">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-            {portfolioEvents.map((event, i) => (
+            {portfolioEditions.map((event, i) => (
               <Link
                 key={event.slug}
                 href={`/portfolio/${event.slug}`}
