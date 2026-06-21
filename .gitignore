@@ -51,3 +51,4 @@ next-env.d.ts
 !README.md
 /old.ts
 **.pdf
+skills-lock.json
