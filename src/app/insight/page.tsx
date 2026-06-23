@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { PageLayout } from "@/components/layout/PageLayout"
 import Header from "@/components/insight/Header"
 import InsightContent from "@/components/insight/InsightContent"
-import Contact from "@/components/home/Contact"
 
 export const metadata: Metadata = {
   title: "Insights",
@@ -16,7 +15,6 @@ export default function InsightPage() {
       <Header />
       <PageLayout>
         <InsightContent />
-        <Contact />
       </PageLayout>
     </div>
   )

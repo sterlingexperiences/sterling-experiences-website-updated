@@ -3,7 +3,9 @@
 import { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 import { Phone, Mail, Calendar, ListChecks } from "lucide-react";
-import { InstagramIcon, LinkedinIcon } from "@/components/ui/assets-icons";
+import { InstagramIcon, LinkedinIcon, FacebookIcon } from "@/components/ui/assets-icons";
+import BookingModal from "@/components/BookingModal";
+import { Button } from "@/components/ui/button";
 import CalButton from "@/components/cal-button";
 
 const Info = () => {
@@ -66,10 +68,12 @@ const Info = () => {
           Tell us what you are building and we will design an approach that fits
           your scope, your guests, and your vision.
         </p>
-        <CalButton
-          title="Book a free consultation"
-          variant="primary"
-          className="mt-6"
+        <BookingModal
+          trigger={
+            <Button variant="primary" className="mt-6">
+              Book a free consultation
+            </Button>
+          }
         />
       </div>
 
@@ -221,6 +225,26 @@ const Info = () => {
                 </div>
               </a>
 
+              {/* Facebook */}
+              <a
+                href="https://web.facebook.com/sterlingxperiences"
+                target="_blank"
+                rel="noreferrer"
+                className="flex items-center gap-4 p-4 md:p-5 rounded-[12px] border border-neutral-200/80 hover:border-brand-purple/40 hover:shadow-[0_4px_16px_rgba(128,0,128,0.08)] bg-white transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] group cursor-pointer"
+              >
+                <div className="flex items-center justify-center w-10 h-10 rounded-[10px] bg-brand-purple/10 text-brand-purple group-hover:bg-brand-purple group-hover:text-white transition-all duration-300 shrink-0">
+                  <FacebookIcon color="currentColor" />
+                </div>
+                <div className="min-w-0">
+                  <p className="font-openSans text-[13px] text-neutral-500 font-medium">
+                    Facebook
+                  </p>
+                  <p className="font-openSans text-[14px] md:text-[15px] text-neutral-800 font-semibold truncate">
+                    Sterling Experiences
+                  </p>
+                </div>
+              </a>
+
               {/* Book a call — CalButton */}
               <div className="flex items-center gap-4 p-4 md:p-5 rounded-[12px] border border-neutral-200/80 hover:border-brand-purple/40 hover:shadow-[0_4px_16px_rgba(128,0,128,0.08)] bg-white transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] group">
                 <div className="flex items-center justify-center w-10 h-10 rounded-[10px] bg-brand-purple/10 text-brand-purple group-hover:bg-brand-purple group-hover:text-white transition-all duration-300 shrink-0">
@@ -286,6 +310,33 @@ const Info = () => {
                 &ldquo;We do not believe in one-size-fits-all solutions. We
                 believe in yours.&rdquo;
               </p>
+            </div>
+
+            {/* Bottom CTA — Book now */}
+            <div
+              className={cn(
+                "mt-12 md:mt-16 text-center transition-all duration-700 delay-[550ms] ease-[cubic-bezier(0.4,0,0.2,1)]",
+                inView
+                  ? "translate-y-0 opacity-100"
+                  : "translate-y-8 opacity-0",
+              )}
+            >
+              <div className="max-w-[600px] mx-auto p-6 md:p-8 bg-brand-purple/[0.03] border border-brand-purple/10 rounded-[16px]">
+                <h3 className="font-ebGaramond text-[24px] md:text-[30px] text-brand-purple font-[600] leading-[1.2] tracking-[-0.02em] mb-3">
+                  Ready to get started?
+                </h3>
+                <p className="font-openSans text-[14px] md:text-[15px] text-neutral-600 leading-[1.7] mb-5">
+                  Tell us about your event and we will design an approach
+                  that fits your scope, your guests, and your vision.
+                </p>
+                <BookingModal
+                  trigger={
+                    <Button variant="primary">
+                      Book a consultation
+                    </Button>
+                  }
+                />
+              </div>
             </div>
           </div>
         </div>

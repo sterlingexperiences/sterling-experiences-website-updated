@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { PageLayout } from "@/components/layout/PageLayout"
 import Header from "@/components/services/Header"
 import WhatWeDo from "@/components/services/WhatWeDo"
-import Contact from "@/components/home/Contact"
 
 export const metadata: Metadata = {
   title: "Services",
@@ -16,7 +15,6 @@ export default function ServicesPage() {
       <Header />
       <PageLayout>
         <WhatWeDo />
-        <Contact />
       </PageLayout>
     </div>
   )

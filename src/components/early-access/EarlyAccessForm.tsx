@@ -7,17 +7,18 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { toast } from "react-toastify";
 import Link from "next/link";
-import { Mail, Phone, User } from "lucide-react";
+import { Mail, Phone, User, Loader2 } from "lucide-react";
 
 export default function EarlyAccessForm() {
   const [data, setData] = useState({ name: "", email: "", phone: "" });
+  const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setData({ ...data, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     if (!data.name.trim() || !data.email.trim() || !data.phone.trim()) {
@@ -31,16 +32,39 @@ export default function EarlyAccessForm() {
       return;
     }
 
-    const body = `Early Access Waitlist Signup
+    setLoading(true);
 
-Name: ${data.name}
-Email: ${data.email}
-Phone: ${data.phone}`;
+    try {
+      const res = await fetch("/api/send-email", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          type: "waitlist",
+          name: data.name,
+          email: data.email,
+          phone: data.phone,
+        }),
+      });
 
-    const mailto = `mailto:admin@sterlingxperiences.com?subject=${encodeURIComponent(`Early Access Waitlist - ${data.name}`)}&body=${encodeURIComponent(body)}`;
+      const result = await res.json();
 
-    window.open(mailto);
-    setSubmitted(true);
+      if (!res.ok) {
+        throw new Error(result.error || "Something went wrong.");
+      }
+
+      toast.success(
+        "You have been added to the waitlist. We will notify you when we launch.",
+      );
+      setSubmitted(true);
+    } catch (error) {
+      const message =
+        error instanceof Error
+          ? error.message
+          : "Unable to submit your request. Please try again.";
+      toast.error(message);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const iconClasses =
@@ -101,8 +125,8 @@ Phone: ${data.phone}`;
                 You are on the list
               </h2>
               <p className="font-openSans text-[14px] text-neutral-600 mt-2 leading-[1.6]">
-                We will notify you when Sterling EventOps launches. Thanks for
-                your interest.
+                We will notify you when Sterling EventOps launches. Check your
+                email for a confirmation.
               </p>
               <Link href="/">
                 <Button variant="secondary" className="mt-6 w-full">
@@ -169,9 +193,17 @@ Phone: ${data.phone}`;
                 <Button
                   type="submit"
                   variant="primary"
+                  disabled={loading}
                   className="w-full h-[52px] text-[15px] font-[500] mt-2"
                 >
-                  Join Waitlist
+                  {loading ? (
+                    <span className="flex items-center justify-center gap-2">
+                      <Loader2 className="size-4 animate-spin" />
+                      Joining...
+                    </span>
+                  ) : (
+                    "Join Waitlist"
+                  )}
                 </Button>
               </form>
             </div>

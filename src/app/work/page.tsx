@@ -4,7 +4,6 @@ import WorkHeader from "@/components/work/WorkHeader"
 import OurAchievements from "@/components/work/OurAchievements"
 import WhatWeOffer from "@/components/work/WhatWeOffer"
 import PortfolioGallery from "@/components/portfolio/PortfolioGallery"
-import Contact from "@/components/home/Contact"
 
 export const metadata: Metadata = {
   title: "Our Work",
@@ -20,7 +19,6 @@ export default function WorkPage() {
         <OurAchievements />
         <WhatWeOffer />
         <PortfolioGallery />
-        <Contact />
       </PageLayout>
     </div>
   )

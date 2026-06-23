@@ -2,6 +2,12 @@
 
 import { useRef, useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
+import { ChevronDown } from "lucide-react";
+
+type ListGroup = {
+  heading: string;
+  items: string[];
+};
 
 type ServiceSectionProps = {
   id: string;
@@ -9,6 +15,7 @@ type ServiceSectionProps = {
   headline: string;
   body: string;
   subtitle?: string;
+  lists: ListGroup[];
 };
 
 const ServiceSection = ({
@@ -16,10 +23,13 @@ const ServiceSection = ({
   title,
   headline,
   body,
-  subtitle,
+  lists,
 }: ServiceSectionProps) => {
   const [inView, setInView] = useState(false);
+  const [accordionOpen, setAccordionOpen] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
+  const accordionContentRef = useRef<HTMLDivElement>(null);
+  const [accordionHeight, setAccordionHeight] = useState(0);
 
   useEffect(() => {
     const el = sectionRef.current;
@@ -32,6 +42,16 @@ const ServiceSection = ({
     return () => o.disconnect();
   }, []);
 
+  useEffect(() => {
+    if (accordionOpen && accordionContentRef.current) {
+      setAccordionHeight(accordionContentRef.current.scrollHeight);
+    } else {
+      setAccordionHeight(0);
+    }
+  }, [accordionOpen]);
+
+  const toggleAccordion = () => setAccordionOpen((prev) => !prev);
+
   return (
     <section
       id={id}
@@ -41,7 +61,7 @@ const ServiceSection = ({
       {/* Cosmic glow background */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <div
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] md:w-[600px] md:h-[600px] rounded-full bg-gradient-to-br from-brand-purple/20 via-brand-gold/10 to-transparent blur-3xl animate-pulse"
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] md:w-[600px] md:h-[600px] rounded-full bg-gradient-to-br from-brand-purple/20 via-brand-gold/10 to-transparent blur-3xl animate-pulse motion-reduce:animate-none"
           style={{ animationDuration: "4s" }}
         />
         <div className="absolute top-[30%] left-[10%] w-[200px] h-[200px] md:w-[300px] md:h-[300px] rounded-full bg-gradient-to-tl from-brand-gold/15 to-transparent blur-2xl" />
@@ -63,7 +83,7 @@ const ServiceSection = ({
 
           <h1
             className={cn(
-              "font-ebGaramond whitespace-nowrap font-[500] md:font-[600] text-[24px] md:text-[56px] text-[#800080] leading-[1.2] md:leading-[78px] tracking-[-0.04em] text-center transition-all duration-700 delay-[400ms] ease-[cubic-bezier(0.4,0,0.2,1)]",
+              "font-ebGaramond whitespace-nowrap font-[500] md:font-[600] text-[24px] md:text-[56px] text-[#800080] leading-[1.2] md:leading-[78px] tracking-[-0.04em] text-center transition-all duration-700 delay-[400ms] ease-[cubic-bezier(0.4,0,0.2,1)] motion-reduce:transition-none motion-reduce:translate-y-0 motion-reduce:opacity-100",
               inView ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0",
             )}
           >
@@ -87,54 +107,54 @@ const ServiceSection = ({
             {/* Corner decorations */}
             <div
               className={cn(
-                "hidden md:block absolute -top-3 -left-3 w-[30px] h-[30px] pointer-events-none transition-all duration-700 ease-[cubic-bezier(0.4,0,0.2,1)]",
+                "hidden md:block absolute -top-3 -left-3 w-[30px] h-[30px] pointer-events-none transition-all duration-700 ease-[cubic-bezier(0.4,0,0.2,1)] motion-reduce:transition-none motion-reduce:opacity-100 motion-reduce:translate-x-0 motion-reduce:translate-y-0",
                 inView
                   ? "opacity-100 translate-x-0 translate-y-0"
                   : "opacity-0 -translate-x-4 -translate-y-4",
               )}
             >
-              <div className="absolute top-0 left-0 w-[20px] h-[2px] bg-brand-gold" />
-              <div className="absolute top-0 left-0 w-[2px] h-[20px] bg-brand-gold" />
+              <div className="absolute top-0 left-0 w-[20px] h-[2px] bg-[#FFD700]" />
+              <div className="absolute top-0 left-0 w-[2px] h-[20px] bg-[#FFD700]" />
             </div>
             <div
               className={cn(
-                "hidden md:block absolute -top-3 -right-3 w-[30px] h-[30px] pointer-events-none transition-all duration-700 delay-100 ease-[cubic-bezier(0.4,0,0.2,1)]",
+                "hidden md:block absolute -top-3 -right-3 w-[30px] h-[30px] pointer-events-none transition-all duration-700 delay-100 ease-[cubic-bezier(0.4,0,0.2,1)] motion-reduce:transition-none motion-reduce:opacity-100 motion-reduce:translate-x-0 motion-reduce:translate-y-0",
                 inView
                   ? "opacity-100 translate-x-0 translate-y-0"
                   : "opacity-0 translate-x-4 -translate-y-4",
               )}
             >
-              <div className="absolute top-0 right-0 w-[20px] h-[2px] bg-brand-gold" />
-              <div className="absolute top-0 right-0 w-[2px] h-[20px] bg-brand-gold" />
+              <div className="absolute top-0 right-0 w-[20px] h-[2px] bg-[#FFD700]" />
+              <div className="absolute top-0 right-0 w-[2px] h-[20px] bg-[#FFD700]" />
             </div>
             <div
               className={cn(
-                "hidden md:block absolute -bottom-3 -right-3 w-[30px] h-[30px] pointer-events-none transition-all duration-700 delay-200 ease-[cubic-bezier(0.4,0,0.2,1)]",
+                "hidden md:block absolute -bottom-3 -right-3 w-[30px] h-[30px] pointer-events-none transition-all duration-700 delay-200 ease-[cubic-bezier(0.4,0,0.2,1)] motion-reduce:transition-none motion-reduce:opacity-100 motion-reduce:translate-x-0 motion-reduce:translate-y-0",
                 inView
                   ? "opacity-100 translate-x-0 translate-y-0"
                   : "opacity-0 translate-x-4 translate-y-4",
               )}
             >
-              <div className="absolute bottom-0 right-0 w-[20px] h-[2px] bg-brand-gold" />
-              <div className="absolute bottom-0 right-0 w-[2px] h-[20px] bg-brand-gold" />
+              <div className="absolute bottom-0 right-0 w-[20px] h-[2px] bg-[#FFD700]" />
+              <div className="absolute bottom-0 right-0 w-[2px] h-[20px] bg-[#FFD700]" />
             </div>
 
             <div className="md:px-8 space-y-8">
-              {/* Headline — slide down */}
+              {/* Headline */}
               <h2
                 className={cn(
-                  "font-ebGaramond text-[28px] md:text-[36px] text-brand-purple leading-[1.3] tracking-[-0.02em] text-center md:text-center max-w-[800px] mx-auto transition-all duration-700 delay-150 ease-[cubic-bezier(0.4,0,0.2,1)]",
+                  "font-ebGaramond text-[28px] md:text-[36px] text-[#800080] leading-[1.3] tracking-[-0.02em] text-center max-w-[800px] mx-auto transition-all duration-700 delay-150 ease-[cubic-bezier(0.4,0,0.2,1)] motion-reduce:transition-none motion-reduce:translate-y-0 motion-reduce:opacity-100",
                   inView ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0",
                 )}
               >
                 &ldquo;{headline}&rdquo;
               </h2>
 
-              {/* Body text — slide up */}
+              {/* Body text */}
               <div className="max-w-[800px] mx-auto">
                 <p
                   className={cn(
-                    "font-openSans text-[15px] md:text-[17px] lg:text-[18px] text-neutral-700 leading-[1.75] tracking-[-0.01em] text-center transition-all duration-700 delay-300 ease-[cubic-bezier(0.4,0,0.2,1)]",
+                    "font-openSans text-[15px] md:text-[17px] lg:text-[18px] text-neutral-700 leading-[1.75] tracking-[-0.01em] text-center transition-all duration-700 delay-300 ease-[cubic-bezier(0.4,0,0.2,1)] motion-reduce:transition-none motion-reduce:translate-y-0 motion-reduce:opacity-100",
                     inView ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0",
                   )}
                 >
@@ -142,22 +162,64 @@ const ServiceSection = ({
                 </p>
               </div>
 
-              {/* Subtitle tag */}
-              {subtitle && (
-                <div
+              {/* Learn More Button */}
+              <div
+                className={cn(
+                  "flex justify-center transition-all duration-700 delay-[450ms] ease-[cubic-bezier(0.4,0,0.2,1)] motion-reduce:transition-none motion-reduce:translate-y-0 motion-reduce:opacity-100",
+                  inView ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0",
+                )}
+              >
+                <button
+                  onClick={toggleAccordion}
                   className={cn(
-                    "text-center transition-all duration-700 delay-[450ms] ease-[cubic-bezier(0.4,0,0.2,1)]",
-                    inView ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0",
+                    "group flex items-center gap-2 font-openSans text-[15px] font-semibold text-[#800080] cursor-pointer transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] active:scale-[0.97] px-6 py-3 rounded-[12px] border border-brand-purple/30 hover:border-brand-purple/60 hover:bg-brand-purple/[0.03] motion-reduce:transition-none",
                   )}
                 >
-                  <span className="inline-block font-ebGaramond text-[16px] md:text-[20px] text-brand-purple/60 font-[500] tracking-[-0.01em] border border-brand-purple/20 rounded-full px-6 py-2">
-                    {subtitle}
-                  </span>
-                </div>
-              )}
+                  <span>{accordionOpen ? "Show Less" : "Learn More"}</span>
+                  <ChevronDown
+                    className={cn(
+                      "size-4 transition-transform duration-300 ease-[cubic-bezier(0.4,0,0.2,1)]",
+                      accordionOpen ? "rotate-180" : "",
+                    )}
+                  />
+                </button>
+              </div>
             </div>
           </div>
         </div>
+
+        {/* Accordion content */}
+        {lists.length > 0 && (
+          <div
+            className="overflow-hidden transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] max-w-[1100px] mx-auto"
+            style={{ maxHeight: accordionHeight ? `${accordionHeight}px` : "0px" }}
+          >
+            <div ref={accordionContentRef} className="pt-8 md:px-8">
+              <div className="p-6 md:p-10 bg-brand-purple/[0.03] border border-brand-purple/10 rounded-[16px]">
+                <div className="grid gap-8 md:gap-12">
+                  {lists.map((group, i) => (
+                    <div key={i}>
+                      <h4 className="font-ebGaramond text-[20px] md:text-[24px] font-[600] text-brand-purple tracking-[-0.02em] mb-5">
+                        {group.heading}
+                      </h4>
+                      <ul className="space-y-3.5">
+                        {group.items.map((item, j) => (
+                          <li
+                            key={j}
+                            className="flex items-start gap-3 font-openSans text-[14px] md:text-[15px] text-neutral-700 leading-[1.5]"
+                          >
+                            <span className="mt-[7px] w-[6px] h-[6px] rounded-full bg-brand-gold shrink-0" />
+                            <span>{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </section>
   );

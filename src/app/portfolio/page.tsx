@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { PageLayout } from "@/components/layout/PageLayout"
 import Header from "@/components/portfolio/Header"
 import PastEvents from "@/components/portfolio/PastEvents"
-import Contact from "@/components/home/Contact"
 
 export const metadata: Metadata = {
   title: "Portfolio",
@@ -16,7 +15,6 @@ export default function PortfolioPage() {
       <Header />
       <PageLayout>
         <PastEvents />
-        <Contact />
       </PageLayout>
     </div>
   )

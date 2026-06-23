@@ -8,7 +8,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "react-toastify";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
-import { Calendar, Users, Building2, Tag, DollarSign, ClipboardList, ChevronDown } from "lucide-react";
+import { Calendar, Users, Building2, Tag, DollarSign, ClipboardList, ChevronDown, Loader2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 type BookingModalProps = {
@@ -20,6 +20,7 @@ const SERVICE_OPTIONS = [
   "Event Management",
   "Staffing",
   "Coordination",
+  "Logistics",
 ];
 
 const MONTHS = [
@@ -98,7 +99,6 @@ function CalendarPicker({
   let day = 1;
   let prevDay = daysInPrevMonth - firstDay + 1;
 
-  // Pad leading days from previous month
   for (let i = 0; i < firstDay; i++) {
     if (!weeks[0]) weeks[0] = [];
     weeks[0].push(-prevDay);
@@ -115,7 +115,6 @@ function CalendarPicker({
     day++;
   }
 
-  // Pad trailing days — fill remaining slots with 0 sentinel
   const lastWeek = weeks[weeks.length - 1];
   while (lastWeek.length < 7) {
     lastWeek.push(0);
@@ -123,7 +122,6 @@ function CalendarPicker({
 
   return (
     <div ref={ref} className="relative">
-      {/* Trigger button */}
       <button
         type="button"
         onClick={() => setOpen(!open)}
@@ -145,10 +143,8 @@ function CalendarPicker({
         />
       </button>
 
-      {/* Calendar popup */}
       {open && (
         <div className="absolute top-full left-0 right-0 z-50 mt-1 bg-[#F5F0E4] rounded-[12px] border border-brand-purple/20 shadow-lg shadow-black/10 p-3">
-          {/* Month/year navigation */}
           <div className="flex items-center justify-between mb-3">
             <button
               type="button"
@@ -169,7 +165,6 @@ function CalendarPicker({
             </button>
           </div>
 
-          {/* Day names */}
           <div className="grid grid-cols-7 mb-1">
             {DAY_NAMES.map((d) => (
               <div
@@ -181,12 +176,10 @@ function CalendarPicker({
             ))}
           </div>
 
-          {/* Day grid */}
           {weeks.map((week, wi) => (
             <div key={wi} className="grid grid-cols-7">
               {week.map((day, di) => {
                 if (day <= 0) {
-                  /* trailing prev-month day — show as muted */
                   const prevDate = -day;
                   return (
                     <button
@@ -200,7 +193,6 @@ function CalendarPicker({
                   );
                 }
                 if (day === 0) {
-                  /* empty cell at end */
                   return <div key={`e-${di}`} />;
                 }
                 return (
@@ -316,6 +308,7 @@ function Dropdown({
 /* ── Main modal ── */
 export default function BookingModal({ trigger }: BookingModalProps) {
   const [open, setOpen] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const [data, setData] = useState({
     name: "",
@@ -333,7 +326,7 @@ export default function BookingModal({ trigger }: BookingModalProps) {
     setData({ ...data, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     if (!data.name.trim()) {
@@ -341,36 +334,58 @@ export default function BookingModal({ trigger }: BookingModalProps) {
       return;
     }
 
-    const dateStr = selectedDate
-      ? `${MONTHS[selectedDate.getMonth()]} ${selectedDate.getDate()}, ${selectedDate.getFullYear()}`
-      : "Not specified";
+    setLoading(true);
 
-    const body = `Booking Consultation Request
+    try {
+      const dateStr = selectedDate
+        ? `${MONTHS[selectedDate.getMonth()]} ${selectedDate.getDate()}, ${selectedDate.getFullYear()}`
+        : "Not specified";
 
-Name: ${data.name}
-Organisation: ${data.organisation || "N/A"}
-Event Type: ${data.eventType || "N/A"}
-Estimated Date: ${dateStr}
-Guest Count: ${data.guestCount || "N/A"}
-Services Required: ${data.servicesRequired || "N/A"}
-Budget Range: ${data.budgetRange || "N/A"}
-Additional Notes: ${data.additionalNotes || "N/A"}`;
+      const res = await fetch("/api/send-email", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          type: "booking",
+          name: data.name,
+          organisation: data.organisation,
+          eventType: data.eventType,
+          date: dateStr,
+          guestCount: data.guestCount,
+          servicesRequired: data.servicesRequired,
+          budgetRange: data.budgetRange,
+          additionalNotes: data.additionalNotes,
+        }),
+      });
 
-    const mailto = `mailto:admin@sterlingxperiences.com?subject=${encodeURIComponent(`Booking Consultation Request from ${data.name}`)}&body=${encodeURIComponent(body)}`;
+      const result = await res.json();
 
-    window.location.href = mailto;
+      if (!res.ok) {
+        throw new Error(result.error || "Something went wrong.");
+      }
 
-    setOpen(false);
-    setSelectedDate(null);
-    setData({
-      name: "",
-      organisation: "",
-      eventType: "",
-      guestCount: "",
-      servicesRequired: "",
-      budgetRange: "",
-      additionalNotes: "",
-    });
+      toast.success(
+        "Your consultation request has been sent. We will be in touch within 24 hours.",
+      );
+      setOpen(false);
+      setSelectedDate(null);
+      setData({
+        name: "",
+        organisation: "",
+        eventType: "",
+        guestCount: "",
+        servicesRequired: "",
+        budgetRange: "",
+        additionalNotes: "",
+      });
+    } catch (error) {
+      const message =
+        error instanceof Error
+          ? error.message
+          : "Unable to send your request. Please try again.";
+      toast.error(message);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const inputClasses =
@@ -536,9 +551,17 @@ Additional Notes: ${data.additionalNotes || "N/A"}`;
             <Button
               type="submit"
               variant="primary"
+              disabled={loading}
               className="w-full h-[50px] text-[15px] font-[500]"
             >
-              Submit Booking Request
+              {loading ? (
+                <span className="flex items-center justify-center gap-2">
+                  <Loader2 className="size-4 animate-spin" />
+                  Sending...
+                </span>
+              ) : (
+                "Submit Booking Request"
+              )}
             </Button>
           </form>
         </div>

@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { PageLayout } from "@/components/layout/PageLayout"
 import Header from "@/components/contact/Header"
 import Info from "@/components/contact/Info"
-import Contact from "@/components/home/Contact"
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -16,7 +15,6 @@ export default function ContactPage() {
       <Header />
       <PageLayout>
         <Info />
-        <Contact />
       </PageLayout>
     </div>
   )

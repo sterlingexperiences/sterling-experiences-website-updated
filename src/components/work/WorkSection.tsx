@@ -158,7 +158,9 @@ const WorkSection = ({
               <h2
                 className={cn(
                   "font-ebGaramond text-[28px] md:text-[36px] text-brand-purple leading-[1.3] tracking-[-0.02em] text-center md:text-center max-w-[800px] mx-auto transition-all duration-700 delay-150 ease-[cubic-bezier(0.4,0,0.2,1)] motion-reduce:transition-none motion-reduce:translate-y-0 motion-reduce:opacity-100",
-                  inView ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0",
+                  inView
+                    ? "translate-y-0 opacity-100"
+                    : "translate-y-8 opacity-0",
                 )}
               >
                 &ldquo;{headline}&rdquo;
@@ -185,7 +187,9 @@ const WorkSection = ({
                 <div
                   className={cn(
                     "flex justify-center transition-all duration-700 delay-[450ms] ease-[cubic-bezier(0.4,0,0.2,1)] motion-reduce:transition-none motion-reduce:translate-y-0 motion-reduce:opacity-100",
-                    inView ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0",
+                    inView
+                      ? "translate-y-0 opacity-100"
+                      : "translate-y-6 opacity-0",
                   )}
                 >
                   <button
@@ -210,17 +214,11 @@ const WorkSection = ({
                 <div
                   className={cn(
                     "flex justify-center transition-all duration-700 delay-[500ms] ease-[cubic-bezier(0.4,0,0.2,1)] motion-reduce:transition-none motion-reduce:translate-y-0 motion-reduce:opacity-100",
-                    inView ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0",
+                    inView
+                      ? "translate-y-0 opacity-100"
+                      : "translate-y-6 opacity-0",
                   )}
-                >
-                  <Link
-                    href={cta.href}
-                    className="group inline-flex items-center gap-2 font-openSans text-[15px] font-semibold text-white bg-brand-purple cursor-pointer transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] active:scale-[0.97] px-8 py-3.5 rounded-[12px] hover:bg-[#660066] shadow-[0_4px_20px_rgba(128,0,128,0.18)]"
-                  >
-                    <span>{cta.label}</span>
-                    <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-0.5" />
-                  </Link>
-                </div>
+                ></div>
               )}
             </div>
           </div>
@@ -228,35 +226,44 @@ const WorkSection = ({
 
         {/* Accordion content */}
         {accordionBlocks.length > 0 && (
-        <div
-          className="overflow-hidden transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] max-w-[1100px] mx-auto"
-          style={{ maxHeight: accordionHeight ? `${accordionHeight}px` : "0px" }}
-        >
-          <div ref={accordionContentRef} className="pt-8 md:px-8">
-            <div className="p-6 md:p-10 bg-brand-purple/[0.03] border border-brand-purple/10 rounded-[16px]">
-              <div className={cn("grid gap-8 md:gap-12", accordionCentered ? "grid-cols-1 max-w-xl mx-auto" : "grid-cols-1 md:grid-cols-2")}>
-                {accordionBlocks.map((block, i) => (
-                  <div key={i}>
-                    <h4 className="font-ebGaramond text-[20px] md:text-[24px] font-[600] text-brand-purple tracking-[-0.02em] mb-5">
-                      {block.title}
-                    </h4>
-                    <ul className="space-y-3.5">
-                      {block.items.map((item, j) => (
-                        <li
-                          key={j}
-                          className="flex items-start gap-3 font-openSans text-[14px] md:text-[15px] text-neutral-700 leading-[1.5]"
-                        >
-                          <span className="mt-[7px] w-[6px] h-[6px] rounded-full bg-brand-gold shrink-0" />
-                          <span>{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                ))}
+          <div
+            className="overflow-hidden transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] max-w-[1100px] mx-auto"
+            style={{
+              maxHeight: accordionHeight ? `${accordionHeight}px` : "0px",
+            }}
+          >
+            <div ref={accordionContentRef} className="pt-8 md:px-8">
+              <div className="p-6 md:p-10 bg-brand-purple/[0.03] border border-brand-purple/10 rounded-[16px]">
+                <div
+                  className={cn(
+                    "grid gap-8 md:gap-12",
+                    accordionCentered
+                      ? "grid-cols-1 max-w-xl mx-auto"
+                      : "grid-cols-1 md:grid-cols-2",
+                  )}
+                >
+                  {accordionBlocks.map((block, i) => (
+                    <div key={i}>
+                      <h4 className="font-ebGaramond text-[20px] md:text-[24px] font-[600] text-brand-purple tracking-[-0.02em] mb-5">
+                        {block.title}
+                      </h4>
+                      <ul className="space-y-3.5">
+                        {block.items.map((item, j) => (
+                          <li
+                            key={j}
+                            className="flex items-start gap-3 font-openSans text-[14px] md:text-[15px] text-neutral-700 leading-[1.5]"
+                          >
+                            <span className="mt-[7px] w-[6px] h-[6px] rounded-full bg-brand-gold shrink-0" />
+                            <span>{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
-        </div>
         )}
       </div>
     </section>

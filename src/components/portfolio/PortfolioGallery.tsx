@@ -241,7 +241,7 @@ export default function PortfolioGallery() {
 
   return (
     <>
-      <section ref={sectionRef} className="relative py-[60px] md:py-[100px] overflow-hidden scroll-mt-24">
+      <section id="our-portfolio" ref={sectionRef} className="relative py-[60px] md:py-[100px] overflow-hidden scroll-mt-24">
         {/* Glow */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           <div className={cn(

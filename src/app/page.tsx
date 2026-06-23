@@ -6,8 +6,6 @@ import { PageLayout } from "@/components/layout/PageLayout";
 import WhatWeBelieve from "@/components/home/FromFunfairs";
 import OurExpertise from "@/components/home/OurExpertise";
 import OurWork from "@/components/home/Portfolio";
-import Contact from "@/components/home/Contact";
-
 export default function Home() {
   return (
     <div className="bg-secondary">
@@ -21,7 +19,6 @@ export default function Home() {
         <WhatWeBelieve />
         <OurExpertise />
         <OurWork />
-        <Contact />
       </PageLayout>
     </div>
   );

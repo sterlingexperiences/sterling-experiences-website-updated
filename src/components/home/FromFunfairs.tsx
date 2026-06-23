@@ -66,9 +66,6 @@ const WhatWeBelieve = () => {
             inView ? "translate-x-0 opacity-100" : "translate-x-16 opacity-0",
           )}
         >
-          <p className="font-ebGaramond font-[500] text-[14px] text-brand-gold tracking-[0.08em] uppercase mb-2">
-            Our Philosophy
-          </p>
           <h1 className="font-ebGaramond font-[500] md:font-[600] text-[36px] md:text-[48px] text-brand-purple leading-[43px] md:leading-[57px] tracking-[-0.04em] text-center md:text-left">
             What We Believe
           </h1>

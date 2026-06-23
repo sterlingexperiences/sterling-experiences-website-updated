@@ -6,8 +6,6 @@ import OurApproach from "@/components/about/OurApproach";
 import MeetTheFounder from "@/components/about/MeetTheFounder";
 import MissionVision from "@/components/about/MissionVision";
 import CoreValues from "@/components/about/CoreValues";
-import Contact from "@/components/home/Contact";
-
 export const metadata: Metadata = {
   title: "About",
   description:
@@ -24,7 +22,6 @@ export default function AboutPage() {
         <MeetTheFounder />
         <MissionVision />
         <CoreValues />
-        <Contact />
       </PageLayout>
     </div>
   );
